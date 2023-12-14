@@ -37,4 +37,19 @@ def main():
         print(weather_data)
     else:
         print("Failed to retrieve weather data")
+
+
+# create display_weather function (display's weather for user)
+def display_weather(weather_data):
+    if 'data' in weather_data:
+        current_data = weather_data['data'][0]
+
+        print("Current Weather:")
+        print(f"Location: {current_data['city_name']}, {current_data['country_code']}")
+        print(f"Temperature: {current_data['temp']}°C")
+        print(f"Description: {current_data['weather']['description']}")
+        print(f"Humidity: {current_data['rh']}%")
+        print(f"Wind Speed: {current_data['wind_spd']} m/s")
+    else:
+        print("Invalid or incomplete weather data.")
     
