@@ -22,7 +22,7 @@ def main():
         'units': units,
         'language': language,
     }
- params = {
+    params = {
         'key': api_key,
         'city': city,
         'country': country,
@@ -52,4 +52,8 @@ def display_weather(weather_data):
         print(f"Wind Speed: {current_data['wind_spd']} m/s")
     else:
         print("Invalid or incomplete weather data.")
+
+
+if __name__ == "__main__":
+    main()
     
