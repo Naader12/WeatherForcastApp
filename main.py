@@ -13,6 +13,9 @@ def main():
     units = input("Enter units (e.g., 'M' for Metric, 'I' for Imperial): ")
     language = input("Enter language code (e.g., 'en' for English): ")
 
+    # ask user if they want to see advanced data
+    show_advanced_data = input("Do you want to see advanced data? (yes/no): ").lower() == 'yes'
+
     # get api key
     api_key = 'fe52dd6395fb413f8d9ea3886042e8b9'
 
@@ -37,15 +40,21 @@ def main():
 
     if weather_data:
         # process and use the weather data
-        display_weather(weather_data, units)
+        display_weather(weather_data, units, show_advanced_data)
     else:
         print("Failed to retrieve weather data")
+
+    
+    # have a nice day message
+    print("\n==================================================")
+    print("\nHave a nice day!")
+    print("\n==================================================")
 
     
 
 
 # create display_weather function (display's weather for user)
-def display_weather(weather_data, units):
+def display_weather(weather_data, units, show_advanced_data=False):
 
     if 'data' in weather_data:
         current_data = weather_data['data'][0]
@@ -80,46 +89,49 @@ def display_weather(weather_data, units):
         print("------------------------------------------------")
         print(f"Wind Speed: {wind_speed_value} {wind_speed_unit}")
         print("\n==================================================")
-        print("\n Advanced Data")
-        print("\n==================================================")
-        print(f"\nSolar Radiation: {current_data['solar_rad']}")
-        print("------------------------------------------------")
-        print(f"\nAir Quality Index (AQI): {current_data['aqi']}")
-        print("------------------------------------------------")
-        print(f"\nDew Point: {current_data['dewpt']}{temperature_unit}")
-        print("------------------------------------------------")
-        print(f"\nDirect Normal Irradiance (DNI): {current_data['dni']}")
-        print("------------------------------------------------")
-        print(f"\nDiffuse Horizontal Irradiance (DHI): {current_data['dhi']}")
-        print("------------------------------------------------")
-        print(f"\nSolar Elevation Angle: {current_data['elev_angle']}")
-        print("------------------------------------------------")
-        print(f"\nGlobal Horizontal Irradiance (GHI): {current_data['ghi']}")
-        print("------------------------------------------------")
-        print(f"\nGust Speed: {current_data['gust']} {wind_speed_unit}")
-        print("------------------------------------------------")
-        print(f"\nLatitude: {current_data['lat']}")
-        print("------------------------------------------------")
-        print(f"\nLongitude: {current_data['lon']}")
-        print("------------------------------------------------")
-        print(f"\nSolar Noon Angle: {current_data['h_angle']}")
-        print("------------------------------------------------")
-        print(f"\nPrecipitation: {current_data['precip']}")
-        print("------------------------------------------------")
-        print(f"\nPressure: {current_data['pres']}")
-        print("------------------------------------------------")
-        print(f"\nSnowfall: {current_data['snow']}")
-        print("------------------------------------------------")
-        print(f"\nSea Level Pressure: {current_data['slp']}")
-        print("------------------------------------------------")
-        print(f"\nSunrise Time: {current_data['sunrise']}")
-        print("------------------------------------------------")
-        print(f"\nSunset Time: {current_data['sunset']}")
-        print("------------------------------------------------")
-        print(f"\nUV Index: {current_data['uv']}")
-        print("------------------------------------------------")
-        print(f"\nVisibility: {current_data['vis']}")
-        print("------------------------------------------------")
+
+        # addition of advanced data
+        if show_advanced_data:
+            print("\n Advanced Data")
+            print("\n==================================================")
+            print(f"\nSolar Radiation: {current_data['solar_rad']}")
+            print("------------------------------------------------")
+            print(f"Air Quality Index (AQI): {current_data['aqi']}")
+            print("------------------------------------------------")
+            print(f"Dew Point: {current_data['dewpt']}{temperature_unit}")
+            print("------------------------------------------------")
+            print(f"Direct Normal Irradiance (DNI): {current_data['dni']}")
+            print("------------------------------------------------")
+            print(f"Diffuse Horizontal Irradiance (DHI): {current_data['dhi']}")
+            print("------------------------------------------------")
+            print(f"Solar Elevation Angle: {current_data['elev_angle']}°")
+            print("------------------------------------------------")
+            print(f"Global Horizontal Irradiance (GHI): {current_data['ghi']}")
+            print("------------------------------------------------")
+            print(f"Gust Speed: {current_data['gust']} {wind_speed_unit}")
+            print("------------------------------------------------")
+            print(f"Latitude: {current_data['lat']}")
+            print("------------------------------------------------")
+            print(f"Longitude: {current_data['lon']}")
+            print("------------------------------------------------")
+            print(f"Solar Noon Angle: {current_data['h_angle']}")
+            print("------------------------------------------------")
+            print(f"Precipitation: {current_data['precip']}")
+            print("------------------------------------------------")
+            print(f"Pressure: {current_data['pres']}")
+            print("------------------------------------------------")
+            print(f"Snowfall: {current_data['snow']}")
+            print("------------------------------------------------")
+            print(f"Sea Level Pressure: {current_data['slp']}")
+            print("------------------------------------------------")
+            print(f"Sunrise Time: {current_data['sunrise']}")
+            print("------------------------------------------------")
+            print(f"Sunset Time: {current_data['sunset']}")
+            print("------------------------------------------------")
+            print(f"UV Index: {current_data['uv']}")
+            print("------------------------------------------------")
+            print(f"Visibility: {current_data['vis']}")
+            print("------------------------------------------------")
 
 
     else:
